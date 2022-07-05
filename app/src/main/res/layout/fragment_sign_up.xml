@@ -15,9 +15,13 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_register"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tv_create_account"
@@ -211,7 +215,10 @@
                 app:layout_constraintTop_toTopOf="@id/cb_terms" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
     </androidx.cardview.widget.CardView>
+
 
     <Button
         android:id="@+id/btn_register"

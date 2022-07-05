@@ -7,7 +7,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.socialx.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
