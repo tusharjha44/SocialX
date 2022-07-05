@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">SocialX</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email_hint">johndoe@gmail.com</string>
+    <string name="account">Account</string>
+    <string name="password">Password</string>
+    <string name="hint_password">Password</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="login_with">Login with</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="register_now">Register Now</string>
+    <string name="sign_in">Sign In</string>
+    <string name="facebook_logo">facebook logo</string>
+    <string name="google_logo">Google logo</string>
+    <string name="email">Email</string>
+    <string name="signin_into_your">SignIn into your</string>
+    <string name="already_have_an_account">Already have an account ?</string>
+    <string name="i_agree_with_terms_conditions">I agree with</string>
+    <string name="name_hint">John doe</string>
+    <string name="hint_contact">9876543210</string>
+    <string name="pass_hint">*********</string>
+    <string name="create_an">Create an</string>
+    <string name="register">REGISTER</string>
+    <string name="contact_no">Contact no</string>
+    <string name="name">Name</string>
+    <string name="terms_conditions"><u><![CDATA[terms & conditions]]></u></string>
 </resources>
