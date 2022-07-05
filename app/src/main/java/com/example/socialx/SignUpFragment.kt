@@ -45,7 +45,8 @@ class SignUpFragment : Fragment() {
                     if(task.isSuccessful){
                         Log.d("TAG", "createUserWithEmail:success")
                         val user: FirebaseUser = task.result!!.user!!
-                        Log.d("TAG", user.email.toString())
+                        Toast.makeText(context, " Registered Successfully. Please sign in!!.",
+                            Toast.LENGTH_SHORT).show()
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("TAG", "createUserWithEmail:failure", task.exception)

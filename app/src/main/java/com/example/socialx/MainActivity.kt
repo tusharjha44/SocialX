@@ -1,14 +1,19 @@
 package com.example.socialx
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.socialx.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: FragmentAdapter
 
@@ -16,6 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        auth = Firebase.auth
 
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Log In"))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Sign Up"))
@@ -38,6 +45,16 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            val intent = Intent(this,HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
 
