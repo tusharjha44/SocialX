@@ -37,8 +37,10 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Hide action bar
         supportActionBar?.hide()
 
+        //change color of window
         val window: Window = this.window
 
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -50,6 +52,7 @@ class HomeActivity : AppCompatActivity() {
         factory = NewsViewModelFactory(service)
         viewModel = ViewModelProvider(this,factory)[NewsViewModel::class.java]
 
+        //SignOut
         binding.ivLogOut.setOnClickListener {
             Firebase.auth.signOut()
             startActivity(Intent(this, MainActivity::class.java))
@@ -62,6 +65,7 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+    //Search view
     private fun setSearchView(){
         binding.svNews.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(p0: String?): Boolean {
@@ -89,12 +93,14 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+    //Display searched news
     private fun viewSearchedList() {
         viewModel.searchedHeadLines.observe(this) {
             madapter.differ.submitList(it.body()?.articles?.toList())
         }
     }
 
+    //Display News
     private fun viewNewsList() {
         viewModel.getNewsHeadlines("in")
         viewModel.newsHeadLines.observe(this) {
@@ -102,6 +108,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    //Initialize Recycler View
     private fun initRecyclerView() {
         madapter = NewsListAdapter()
         binding.rvNews.adapter = madapter

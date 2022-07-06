@@ -29,10 +29,12 @@ class MainActivity : AppCompatActivity() {
         sdkInitialize(applicationContext)
         AppEventsLogger.activateApp(application)
 
+        //Tab layout
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Log In"))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Sign Up"))
         val fragmentManager: FragmentManager = supportFragmentManager
         adapter = FragmentAdapter(fragmentManager, lifecycle)
+        //View Pager Implementation
         binding.viewPager2.adapter = adapter
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -52,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //check if the user is already logged in or not
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.

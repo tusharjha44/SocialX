@@ -63,6 +63,7 @@ class LogInFragment : Fragment() {
 
         googleSignInClient = context?.let { GoogleSignIn.getClient(it, gso) }!!
 
+        //Configure Facebook Sign In
         callbackManager = create()
 
         binding.ivGoogleLogin.setOnClickListener {
@@ -77,6 +78,67 @@ class LogInFragment : Fragment() {
         return binding.root
     }
 
+
+    private fun signIn() {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                val account = task.getResult(ApiException::class.java)!!
+                Log.d("TAG", "firebaseAuthWithGoogle:" + account.id)
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
+                // Google Sign In failed, update UI appropriately
+                Log.w("TAG", "Google sign in failed", e)
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+
+        GlobalScope.launch(Dispatchers.IO) {
+            val auth = auth.signInWithCredential(credential).await()
+            val firebaseUser = auth.user
+            withContext(Dispatchers.Main){
+                updateUI(firebaseUser)
+            }
+        }
+    }
+
+    //Sign In user with Google
+    private fun signInUserWithGoogle() {
+
+        val email: String = binding.etEmailLogIn.text.toString()
+        val password: String = binding.etPasswordLogIn.text.toString()
+
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("TAG", "signInWithEmail:success")
+                    val user = task.result!!.user!!
+                    updateUI(user)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("TAG", "signInWithEmail:failure", task.exception)
+                    Toast.makeText(context, "Registration failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+
+    }
+
+
+    //Sign In user with facebook
     private fun signInUserWithFb() {
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult?> {
@@ -96,49 +158,8 @@ class LogInFragment : Fragment() {
 
     }
 
-    private fun signIn() {
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
 
-        override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-            callbackManager.onActivityResult(requestCode, resultCode, data)
-            super.onActivityResult(requestCode, resultCode, data)
-            // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-            if (requestCode == RC_SIGN_IN) {
-                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-                try {
-                    // Google Sign In was successful, authenticate with Firebase
-                    val account = task.getResult(ApiException::class.java)!!
-                    Log.d("TAG", "firebaseAuthWithGoogle:" + account.id)
-                    firebaseAuthWithGoogle(account.idToken!!)
-                } catch (e: ApiException) {
-                    // Google Sign In failed, update UI appropriately
-                    Log.w("TAG", "Google sign in failed", e)
-                }
-            }
-    }
-
-    private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-
-        GlobalScope.launch(Dispatchers.IO) {
-            val auth = auth.signInWithCredential(credential).await()
-            val firebaseUser = auth.user
-            withContext(Dispatchers.Main){
-                updateUI(firebaseUser)
-            }
-        }
-    }
-
-
-    private fun updateUI(firebaseUser: FirebaseUser?) {
-        if(firebaseUser != null){
-            val intent = Intent(context, HomeActivity::class.java)
-            startActivity(intent)
-        }
-    }
-
+    //Face book access token
     private fun handleFacebookAccessToken(token: AccessToken) {
         Log.d("TAG", "handleFacebookAccessToken:$token")
 
@@ -160,26 +181,12 @@ class LogInFragment : Fragment() {
             }
     }
 
-    private fun signInUserWithGoogle() {
-
-        val email: String = binding.etEmailLogIn.text.toString()
-        val password: String = binding.etPasswordLogIn.text.toString()
-
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("TAG", "signInWithEmail:success")
-                    val user = task.result!!.user!!
-                    updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("TAG", "signInWithEmail:failure", task.exception)
-                    Toast.makeText(context, "Registration failed.",
-                        Toast.LENGTH_SHORT).show()
-                }
-            }
-
+    //Update UI
+    private fun updateUI(firebaseUser: FirebaseUser?) {
+        if(firebaseUser != null){
+            val intent = Intent(context, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }
