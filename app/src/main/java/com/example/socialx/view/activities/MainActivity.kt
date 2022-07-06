@@ -7,8 +7,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.socialx.adapter.FragmentAdapter
 import com.example.socialx.databinding.ActivityMainBinding
+import com.facebook.AccessToken
 import com.facebook.FacebookSdk.sdkInitialize
 import com.facebook.appevents.AppEventsLogger
+import com.facebook.login.LoginManager
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

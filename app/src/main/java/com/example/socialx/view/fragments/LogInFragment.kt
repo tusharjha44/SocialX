@@ -10,9 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.socialx.view.activities.HomeActivity
 import com.example.socialx.R
 import com.example.socialx.databinding.FragmentLogInBinding
+import com.example.socialx.view.activities.HomeActivity
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.CallbackManager.Factory.create
@@ -55,6 +55,7 @@ class LogInFragment : Fragment() {
 
         auth = Firebase.auth
 
+
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -85,8 +86,9 @@ class LogInFragment : Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
+
+        callbackManager.onActivityResult(requestCode, resultCode, data)
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
@@ -140,6 +142,8 @@ class LogInFragment : Fragment() {
 
     //Sign In user with facebook
     private fun signInUserWithFb() {
+
+        LoginManager.getInstance().logInWithReadPermissions(this, listOf("email","public_profile"))
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult?> {
                 override fun onCancel() {
