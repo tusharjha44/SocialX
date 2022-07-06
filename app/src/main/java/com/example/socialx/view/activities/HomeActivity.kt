@@ -65,7 +65,7 @@ class HomeActivity : AppCompatActivity() {
     private fun setSearchView(){
         binding.svNews.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                viewModel.getSearchedHeadLines("in,",1,p0.toString())
+                viewModel.getSearchedHeadLines("in,",p0.toString())
                 viewSearchedList()
                 return false
             }
@@ -73,7 +73,7 @@ class HomeActivity : AppCompatActivity() {
             override fun onQueryTextChange(p0: String?): Boolean {
                 MainScope().launch {
                     delay(2000)
-                    viewModel.getSearchedHeadLines("us", 1,p0.toString())
+                    viewModel.getSearchedHeadLines("us",p0.toString())
                     viewSearchedList()
                 }
                 return false
@@ -96,7 +96,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun viewNewsList() {
-        viewModel.getNewsHeadlines("in",1)
+        viewModel.getNewsHeadlines("in")
         viewModel.newsHeadLines.observe(this) {
             madapter.differ.submitList(it.body()?.articles?.toList())
         }
