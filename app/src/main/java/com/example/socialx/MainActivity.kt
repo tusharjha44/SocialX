@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.socialx.databinding.ActivityMainBinding
+import com.facebook.FacebookSdk
+import com.facebook.FacebookSdk.sdkInitialize
+import com.facebook.appevents.AppEventsLogger
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -23,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = Firebase.auth
+        sdkInitialize(applicationContext)
+        AppEventsLogger.activateApp(application)
 
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Log In"))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Sign Up"))

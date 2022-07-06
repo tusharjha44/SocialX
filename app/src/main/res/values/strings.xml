@@ -25,9 +25,12 @@
     <string name="contact_no">Contact no</string>
     <string name="name">Name</string>
 
-    <string name="facebook_app_id">1234</string>
+    <string name="facebook_app_id">539267354555302</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
-    <string name="facebook_client_token">56789</string>
+    <string name="facebook_client_token">38a4be215dedfe927ed180dd1a7129cd</string>
 
     <string name="terms_conditions"><u><![CDATA[terms & conditions]]></u></string>
+    <string name="time_hint">2 hours ago</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
 </resources>

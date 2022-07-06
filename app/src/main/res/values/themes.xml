@@ -13,4 +13,7 @@
         <item name="android:statusBarColor">@color/dark_red</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/blue</item>
+    </style>
 </resources>
