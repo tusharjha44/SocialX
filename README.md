@@ -4,7 +4,14 @@ This repo contains a sKotlinr application that demonstrates the use of Firebase 
 
 ## TechStack Used
 
-<a href="https://dart.dev" target="_blank"> <img src="https://www.vectorlogo.zone/logos/kotlin/kotlin-icon.svg" alt="dart" width="40" height="40"/> </a> <a href="https://firebase.google.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> 
+* Firebase is used for authentication using google,facebook and email.
+* Retrofit is used for api services.
+* Kotlin is used as the backend language.
+* newsapi.org API is used in the application.
+* Country Picker,Glide and many other libraries are also used.
+
+
+<a href="https://dart.dev" target="_blank"> <img src="https://www.vectorlogo.zone/logos/kotlin/kotlin-icon.svg" alt="dart" width="40" height="40"/> </a> <a href="https://firebase.google.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/>
 
 ## What does it do?
 
