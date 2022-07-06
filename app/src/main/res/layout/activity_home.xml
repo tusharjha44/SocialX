@@ -5,17 +5,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".HomeActivity">
+    tools:context=".view.activities.HomeActivity">
 
-    <SearchView
-        android:id="@+id/svNews"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
-        android:queryHint="Search in Feed"
-        android:textColorHint="@color/white"
-        android:iconifiedByDefault="false"
-        />
+        android:orientation="horizontal">
+
+        <SearchView
+            android:id="@+id/svNews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            android:queryHint="Search in Feed"
+            android:textColorHint="@color/white"
+            android:layout_weight="4"
+            android:iconifiedByDefault="false"
+            />
+
+        <ImageView
+            android:id="@+id/iv_log_out"
+            android:layout_marginEnd="8dp"
+            android:layout_width="50dp"
+            android:background="@color/blue"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_logout_24"/>
+
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvNews"

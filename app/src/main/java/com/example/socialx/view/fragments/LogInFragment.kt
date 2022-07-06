@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package com.example.socialx
+package com.example.socialx.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.socialx.view.activities.HomeActivity
+import com.example.socialx.R
 import com.example.socialx.databinding.FragmentLogInBinding
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
@@ -132,7 +134,7 @@ class LogInFragment : Fragment() {
 
     private fun updateUI(firebaseUser: FirebaseUser?) {
         if(firebaseUser != null){
-            val intent = Intent(context,HomeActivity::class.java)
+            val intent = Intent(context, HomeActivity::class.java)
             startActivity(intent)
         }
     }

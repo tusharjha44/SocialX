@@ -1,9 +1,11 @@
-package com.example.socialx
+package com.example.socialx.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.socialx.view.fragments.LogInFragment
+import com.example.socialx.view.fragments.SignUpFragment
 
 class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {

@@ -1,17 +1,14 @@
-package com.example.socialx
+package com.example.socialx.adapter
 
-import android.text.format.DateUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.socialx.Utils
 import com.example.socialx.databinding.ListItemBinding
 import com.example.socialx.model.Article
-import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.*
 
 class NewsListAdapter(): RecyclerView.Adapter<MyViewHolder>() {

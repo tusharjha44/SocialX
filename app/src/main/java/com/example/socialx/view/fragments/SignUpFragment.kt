@@ -1,4 +1,4 @@
-package com.example.socialx
+package com.example.socialx.view.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -39,7 +39,9 @@ class SignUpFragment : Fragment() {
         val email: String = binding.etEmailSignUp.text.toString()
         val password: String = binding.etPasswordSignUp.text.toString()
         val phone: String = binding.etNumberSignUp.text.toString()
+        val checkBox = binding.cbTerms
 
+        if(name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && phone.isNotEmpty() && checkBox.isChecked){
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener {task->
                     if(task.isSuccessful){
@@ -53,6 +55,11 @@ class SignUpFragment : Fragment() {
                         Toast.makeText(context, "Authentication failed.",
                             Toast.LENGTH_SHORT).show()
                     }
-                    }
                 }
+        }else{
+            Toast.makeText(context,"Please fill all the details",Toast.LENGTH_SHORT).show()
+        }
+
     }
+
+}

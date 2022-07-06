@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E2E5DE"
-    tools:context=".LogInFragment">
+    tools:context=".view.fragments.LogInFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -126,23 +126,23 @@
                 android:id="@+id/iv_fb_login"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="140dp"
+                android:layout_marginStart="48dp"
                 android:layout_marginTop="16dp"
                 android:contentDescription="@string/facebook_logo"
                 android:src="@drawable/facebook"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_google_login"
                 app:layout_constraintTop_toBottomOf="@+id/tv_login_with_text" />
 
             <ImageView
                 android:id="@+id/iv_google_login"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="48dp"
+                android:layout_marginStart="140dp"
                 android:layout_marginTop="13dp"
                 android:contentDescription="@string/google_logo"
-                android:src="@drawable/googlelogo"
-                app:layout_constraintStart_toEndOf="@+id/iv_fb_login"
-                app:layout_constraintTop_toBottomOf="@+id/tv_login_with_text" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_login_with_text"
+                android:src="@drawable/googlelogo"/>
 
             <TextView
                 android:id="@+id/tv_login_with_text"

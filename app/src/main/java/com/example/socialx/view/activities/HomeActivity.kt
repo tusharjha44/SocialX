@@ -1,16 +1,25 @@
-package com.example.socialx
+package com.example.socialx.view.activities
 
-import android.R
+
+import android.content.Intent
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.socialx.R
+import com.example.socialx.adapter.NewsListAdapter
+import com.example.socialx.api.NewsService
+import com.example.socialx.api.RetrofitInstance
 import com.example.socialx.databinding.ActivityHomeBinding
+import com.example.socialx.viewModel.NewsViewModel
+import com.example.socialx.viewModel.NewsViewModelFactory
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -34,12 +43,18 @@ class HomeActivity : AppCompatActivity() {
 
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.holo_blue_dark, null)
+        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.blue, null)
 
 
         service = RetrofitInstance.getRetroInstance().create(NewsService::class.java)
         factory = NewsViewModelFactory(service)
         viewModel = ViewModelProvider(this,factory)[NewsViewModel::class.java]
+
+        binding.ivLogOut.setOnClickListener {
+            Firebase.auth.signOut()
+            startActivity(Intent(this, MainActivity::class.java))
+            Toast.makeText(this,"Signed Out Successfully!!",Toast.LENGTH_SHORT).show()
+        }
 
         initRecyclerView()
         viewNewsList()

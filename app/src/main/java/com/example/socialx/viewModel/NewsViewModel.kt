@@ -1,8 +1,7 @@
-package com.example.socialx
+package com.example.socialx.viewModel
 
-import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
+import com.example.socialx.api.NewsService
 import com.example.socialx.model.News
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

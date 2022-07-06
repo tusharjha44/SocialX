@@ -1,5 +1,6 @@
-package com.example.socialx
+package com.example.socialx.api
 
+import com.example.socialx.BuildConfig
 import com.example.socialx.model.News
 import retrofit2.Response
 import retrofit2.http.GET
